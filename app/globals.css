@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
+}
+
+.bg-center {
+  background-position: center;
+}
+
+.bg-repeat-no {
+  background-repeat: no-repeat;
+}
 
 
 
