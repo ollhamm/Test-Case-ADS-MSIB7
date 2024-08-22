@@ -1,4 +1,4 @@
-// Result.tsx
+"use client";
 import React from "react";
 import { IconType } from "react-icons";
 
@@ -14,7 +14,9 @@ const Result: React.FC<ResultProps> = ({ title, subtitle, icon: Icon }) => {
       <div className="absolute top-4 right-4 text-3xl text-white bg-blue-500 p-1">
         <Icon size={16} />
       </div>
-      <div className="text-md font-bold text-gray-800 mb-2">{title}</div>
+      <div className="text-xs md:text-md font-bold text-gray-800 mb-2">
+        {title}
+      </div>
       <div className="text-gray-600 text-xs">{subtitle}</div>
     </div>
   );

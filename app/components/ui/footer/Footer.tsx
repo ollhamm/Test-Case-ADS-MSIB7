@@ -1,4 +1,4 @@
-// Footer.tsx
+"use client";
 import React from "react";
 import Image from "next/image"; // Gunakan Image dari Next.js untuk optimasi gambar
 
