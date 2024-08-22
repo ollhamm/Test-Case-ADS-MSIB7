@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
     <div
       className={`flex flex-col ${
         reverseLayout ? "md:flex-row-reverse" : "md:flex-row"
-      } items-center mt-12 justify-between px-6 md:px-48`}
+      } items-center md:ml-24 ml-0 mt-12 justify-between px-6 md:px-48`}
     >
       {/* Image */}
       <div className="flex justify-center w-full md:w-1/2 mb-6 md:mb-0">

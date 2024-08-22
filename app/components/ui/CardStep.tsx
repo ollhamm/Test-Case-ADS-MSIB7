@@ -19,7 +19,7 @@ const CardStep: React.FC<CardStepProps> = ({
   return (
     <div className="flex flex-col items-center justify-center mt-12">
       <h1 className="text-2xl md:text-3xl text-[#3366FF] font-bold mb-4 text-center px-6 md:px-48">
-        {title}
+        &quot;{title}&quot;
       </h1>
       <div className="flex flex-col md:flex-row items-center justify-center gap-6">
         {/* Image */}
@@ -28,7 +28,7 @@ const CardStep: React.FC<CardStepProps> = ({
             src={imageUrl}
             alt={altText}
             width={300}
-            height={200}
+            height={300}
             className="rounded-md"
           />
         </div>
