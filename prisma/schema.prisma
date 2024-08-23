@@ -1,3 +1,4 @@
+// prisma fix
 generator client {
   provider = "prisma-client-js"
 }
