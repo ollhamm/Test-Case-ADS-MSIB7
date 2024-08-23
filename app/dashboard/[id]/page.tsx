@@ -81,7 +81,7 @@ const Page = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <div className="mb-8 text-center flex flex-col">
           <div className="font-bold text-xl">Welcome {user?.username}</div>
-          <div className="text-sm">Here's your dashboard</div>
+          <div className="text-sm">Here&apos;s your dashboard</div>
         </div>
         {/* Other dashboard content goes here */}
         <button

@@ -47,7 +47,9 @@ const SignIn = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <div className="mb-8 text-center flex flex-col">
           <div className="font-bold text-xl">Welcome Back</div>
-          <div className="text-sm">We’re so excited to see you again!</div>
+          <div className="text-sm">
+            We&rsquo;re so excited to see you again!
+          </div>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
