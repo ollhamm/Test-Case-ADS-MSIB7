@@ -1,9 +1,47 @@
 "use client";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import { toast } from "react-hot-toast";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Save the token in localStorage
+        localStorage.setItem("authToken", data.token);
+
+        // Save the token in a cookie
+        document.cookie = `authToken=${data.token}; path=/; Secure; SameSite=Strict`;
+
+        toast.success("Login successful!");
+
+        // Redirect to the dashboard with the user ID
+        router.push(`/dashboard/${data.user.id}`);
+      } else {
+        toast.error(data.error || "Login failed!");
+      }
+    } catch (error) {
+      toast.error("Error during login!");
+      console.error("Error during login:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full items-center justify-center ">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -11,13 +49,15 @@ const SignIn = () => {
           <div className="font-bold text-xl">Welcome Back</div>
           <div className="text-sm">We’re so excited to see you again!</div>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
               type="text"
-              id="username"
+              id="email"
               placeholder="Enter your username or email"
               className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -27,6 +67,8 @@ const SignIn = () => {
               id="password"
               placeholder="Enter your password"
               className="w-full px-6 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

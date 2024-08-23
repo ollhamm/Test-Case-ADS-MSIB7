@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Select from "react-select";
 import "react-phone-number-input/style.css";
+import { toast } from "react-hot-toast";
 
 const countryOptions = [
   { value: "+1", label: "+1 (USA)" },
@@ -11,12 +12,55 @@ const countryOptions = [
 ];
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("+62"); // Default to +62 (Indonesia)
   const router = useRouter();
 
   const handlePhoneChange = (value: string) => {
     setPhoneNumber(value);
+  };
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!phoneNumber) {
+      toast.error("Phone number is required");
+      return;
+    }
+
+    const fullPhoneNumber = `${selectedCountryCode}${phoneNumber}`;
+
+    const payload = {
+      email,
+      username,
+      phone_number: fullPhoneNumber,
+      password,
+    };
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Registration successful!");
+        router.push("/signIn"); // Navigate to the sign-in page if registration is successful
+      } else {
+        toast.error(`Registration failed: ${data.error}`); // Show error message if registration fails
+      }
+    } catch (error) {
+      console.error("Error saat mendaftar:", error);
+      toast.error("An unexpected error occurred. Please try again."); // Show general error message for unexpected errors
+    }
   };
 
   return (
@@ -28,13 +72,15 @@ const Signup = () => {
             Revolutionize your communication journey with Fowardin today
           </div>
         </div>
-        <form>
+        <form onSubmit={handleSignup}>
           <div className="mb-4">
             <input
               type="text"
               id="email"
               placeholder="Enter your email"
               className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -44,6 +90,8 @@ const Signup = () => {
               id="username"
               placeholder="Enter your username"
               className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -62,7 +110,7 @@ const Signup = () => {
             />
             <input
               type="text"
-              id="phone-number"
+              id="phone_number"
               placeholder="Enter your phone number"
               className="flex-1 px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={phoneNumber}
@@ -76,6 +124,8 @@ const Signup = () => {
               id="password"
               placeholder="Enter your password"
               className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

@@ -56,34 +56,3 @@ export async function GET() {
     );
   }
 }
-
-// user
-
-// app/api/user/[id]/route.ts
-import { NextResponse } from "next/server";
-
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
-
-  try {
-    const user = await getUserById(id);
-    if (user) {
-      return NextResponse.json(user);
-    } else {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
-}
-
-async function getUserById(id: string) {
-  // Dummy implementation: replace with actual database fetching logic
-  return { id, username: "UserName" }; // Example response
-}

@@ -10,7 +10,9 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Effect to determine if menu should be hidden and navbar should be full width
+  const shouldHideNavbar =
+    pathname.startsWith("/dashboard/") && pathname.split("/").length > 2;
+
   useEffect(() => {
     if (pathname === "/signIn" || pathname === "/signup") {
       setHideMenu(true);
@@ -18,10 +20,12 @@ const Navbar: React.FC = () => {
       setHideMenu(false);
     }
   }, [pathname]);
+  if (shouldHideNavbar) {
+    return null;
+  }
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Determine navbar classes based on pathname
   const navbarClasses = `w-full ${
     pathname === "/signIn" || pathname === "/signup" ? "" : "md:w-6/12"
   } fixed top-0 left-0 ${

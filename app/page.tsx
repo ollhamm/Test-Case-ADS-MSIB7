@@ -3,14 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./components/ui/Card";
 import CardStep from "./components/ui/CardStep";
-import CardPrice from "./components/ui/CardPrice";
-import {
-  IoMailSharp,
-  IoPhonePortraitSharp,
-  IoTimerSharp,
-  IoTimeSharp,
-} from "react-icons/io5";
-import { FaFileExcel, FaGoogle } from "react-icons/fa";
 import { MultiStepLoaderDemo } from "./components/layouts/scroll/MultiStab";
 import { PricingSection } from "./components/ui/MapPrice";
 import Faq from "./components/ui/footer/Faq";
