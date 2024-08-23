@@ -9,6 +9,8 @@ export function middleware(request: NextRequest) {
 
   const token = tokenFromHeader || cookieToken;
 
+  console.log("Token from header:", tokenFromHeader); // Debug log
+  console.log("Token from cookie:", cookieToken); // Debug log
   console.log("Token received in middleware:", token);
 
   if (!token) {

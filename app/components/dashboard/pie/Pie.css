@@ -1,0 +1,30 @@
+/* Pie.css */
+@keyframes draw {
+    from {
+      stroke-dashoffset: 251.2;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .blue-segment,
+  .green-segment,
+  .white-segment {
+    animation: draw 2s ease-out forwards;
+  }
+  
+  .blue-segment {
+    stroke-dasharray: 125.6 251.2;
+  }
+  
+  .green-segment {
+    stroke-dasharray: 75.36 251.2;
+    stroke-dashoffset: -125.6;
+  }
+  
+  .white-segment {
+    stroke-dasharray: 50.24 251.2;
+    stroke-dashoffset: -201.96;
+  }
+  
