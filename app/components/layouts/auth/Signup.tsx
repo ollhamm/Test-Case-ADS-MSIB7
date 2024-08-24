@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Select from "react-select";
-import "react-phone-number-input/style.css";
 import { toast } from "react-hot-toast";
 
 const countryOptions = [

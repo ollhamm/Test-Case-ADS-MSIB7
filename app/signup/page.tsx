@@ -6,7 +6,6 @@ import Signup from "../components/layouts/auth/Signup";
 const Page = () => {
   return (
     <div className="flex flex-row items-stretch md:-mt-44 -mt-10 justify-center bg-white md:bg-[#ECF2FA] min-h-screen p-2 md:p-48">
-      {/* Bagian Kiri: Gambar dan Teks */}
       <div className="hidden md:flex flex-col items-center justify-center w-full md:w-2/4 text-left p-4 md:p-8">
         <Image
           src="/images/login.png"
