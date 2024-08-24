@@ -10,17 +10,24 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const accessToken = await prisma.accessToken.findUnique({
-    where: { token },
-    include: { user: true },
-  });
+  try {
+    const accessToken = await prisma.accessToken.findUnique({
+      where: { token },
+      include: { user: true },
+    });
 
-  if (!accessToken || accessToken.expiresAt < new Date()) {
+    if (!accessToken || accessToken.expiresAt < new Date()) {
+      return NextResponse.json(
+        { error: "Token expired or invalid" },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json({ user: accessToken.user });
+  } catch (error) {
     return NextResponse.json(
-      { error: "Token expired or invalid" },
-      { status: 401 }
+      { error: "Internal server error" },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json({ user: accessToken.user });
 }

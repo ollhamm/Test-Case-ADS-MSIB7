@@ -79,7 +79,7 @@ export function PricingSection() {
   ];
 
   return (
-    <div className="flex-col flex items-center justify-center">
+    <div className="flex-col text-black flex items-center justify-center">
       <div className="text-2xl mt-8 font-bold mb-8">Our Pricing</div>
       <div className="mb-4">
         <div className="flex relative">

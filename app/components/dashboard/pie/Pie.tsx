@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 const Pie = () => {
@@ -24,7 +25,7 @@ const Pie = () => {
           cx="50"
           cy="50"
           r="40"
-          stroke="blue"
+          stroke="#8bb5df"
           strokeWidth="20"
           fill="none"
           strokeDasharray="251.2"
@@ -35,7 +36,7 @@ const Pie = () => {
           cx="50"
           cy="50"
           r="40"
-          stroke="green"
+          stroke="#aed696"
           strokeWidth="20"
           fill="none"
           strokeDasharray="251.2"
@@ -48,7 +49,7 @@ const Pie = () => {
           cx="50"
           cy="50"
           r="40"
-          stroke="white"
+          stroke="#F9F7F7"
           strokeWidth="20"
           fill="none"
           strokeDasharray="251.2"

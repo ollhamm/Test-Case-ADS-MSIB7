@@ -28,7 +28,7 @@ const SignIn = () => {
 
   return (
     <div className="flex flex-col w-full items-center justify-center">
-      <div className="bg-white text-black p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <div className="mb-8 text-center flex flex-col">
           <div className="font-bold text-xl">Welcome Back</div>
           <div className="text-sm">
@@ -41,7 +41,7 @@ const SignIn = () => {
               type="text"
               id="email"
               placeholder="Enter your username or email"
-              className="w-full px-4 py-3 bg-slate-100 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -51,7 +51,7 @@ const SignIn = () => {
               type="password"
               id="password"
               placeholder="Enter your password"
-              className="w-full px-6 py-3 border bg-slate-100 text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="w-full px-6 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

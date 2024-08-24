@@ -1,4 +1,3 @@
-// pages/index.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import Card from "./components/ui/Card";
@@ -42,7 +41,7 @@ const Home = () => {
         <div>
           {/* Section 1 */}
           <div
-            className={`section flex flex-1 items-center justify-center min-h-screen transition-opacity duration-500 ${
+            className={`section text-black flex flex-1 items-center justify-center min-h-screen transition-opacity duration-500 ${
               currentSection === 0 ? "opacity-100" : "opacity-30 blur-sm"
             }`}
           >
@@ -60,7 +59,7 @@ const Home = () => {
           </div>
           {/* Section 2 */}
           <div
-            className={`section flex flex-1 items-center justify-center min-h-screen bg-[#ECF2FA] transition-opacity duration-500 ${
+            className={`section text-black flex flex-1 items-center justify-center min-h-screen bg-[#ECF2FA] transition-opacity duration-500 ${
               currentSection === 1 ? "opacity-100" : "opacity-30 blur-sm"
             }`}
           >
@@ -76,7 +75,7 @@ const Home = () => {
           </div>
           {/* Section 3 */}
           <div
-            className={`section flex flex-1 items-center justify-center min-h-screen bg-white transition-opacity duration-500 ${
+            className={`section text-black flex flex-1 items-center justify-center min-h-screen bg-white transition-opacity duration-500 ${
               currentSection === 2 ? "opacity-100" : "opacity-30 blur-sm"
             }`}
           >
@@ -91,7 +90,7 @@ const Home = () => {
           </div>
           {/* Section 4 */}
           <div
-            className={`section flex flex-1 items-center justify-center min-h-screen bg-[#ECF2FA] transition-opacity duration-500 ${
+            className={`section text-black flex flex-1 items-center justify-center min-h-screen bg-[#ECF2FA] transition-opacity duration-500 ${
               currentSection === 3 ? "opacity-100" : "opacity-30 blur-sm"
             }`}
           >

@@ -1,112 +1,78 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useTheme } from "next-themes";
+import toast from "react-hot-toast";
 import {
   FaBell,
   FaUserCircle,
   FaSun,
+  FaMoon,
   FaChevronUp,
   FaChevronDown,
 } from "react-icons/fa";
-import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const DashboardNavbar = () => {
-  const { id } = useParams();
-  const [user, setUser] = useState<{ username: string; id: string } | null>(
-    null
-  );
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
-  const router = useRouter();
+  const { data: session, status } = useSession();
+  const { theme, setTheme } = useTheme();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const token = localStorage.getItem("authToken");
-
-      if (!token) {
-        router.push("/signIn");
-        return;
-      }
-
-      try {
-        const response = await fetch("/api/user", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user);
-          // Redirect to the dashboard with the user ID
-          router.push(`/dashboard/${data.user.id}`);
-        } else {
-          console.error("Failed to fetch user:", await response.json());
-          router.push("/signIn");
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-        router.push("/signIn");
-      }
-    };
-
-    fetchUser();
-  }, [router]);
+  const pathname = usePathname();
+  const isDashboardPage = pathname === "/dashboard";
 
   const handleLogout = async () => {
-    const token = localStorage.getItem("authToken");
-
-    if (token) {
-      try {
-        const response = await fetch("/api/logout", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          toast.success("Logout successful!");
-          localStorage.removeItem("authToken");
-          router.push("/signIn");
-        } else {
-          const errorData = await response.json();
-          toast.error(`Logout failed: ${errorData.error}`);
-        }
-      } catch (error) {
-        console.error("Error logging out:", error);
-        toast.error("An unexpected error occurred. Please try again.");
-      }
-    } else {
-      toast.error("No token found. Please log in again.");
-      router.push("/signIn");
-    }
+    await signOut({ redirect: false });
+    toast.success("Cookie telah dihapus. Anda telah logout.");
+    window.location.href = "/signIn";
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+    toast.success(`Mode ${theme === "light" ? "Gelap" : "Terang"} diaktifkan.`);
+  };
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="bg-[#F3F5F8] p-4 flex items-center justify-between w-auto px-4 absolute top-0 left-[18%] right-0 z-20">
+    <div
+      className={`p-4 flex items-center justify-between w-auto px-4 absolute top-0 left-[18%] right-0 z-20 ${
+        isDashboardPage ? "dark:bg-[#1F1F21]" : "bg-[#F3F5F8]"
+      } ${isDashboardPage ? "dark:text-white" : ""}`}
+    >
       <div className="text-md font-bold">
         <div className="flex flex-row items-center gap-3">
           <div>Selamat datang,</div>
-          <div>{user?.username}</div>
+          <div>{session?.user?.name || "Pengguna"}</div>
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <div className="bg-white p-1 rounded-full">
-          <button className="p-2 rounded-full">
+        <div
+          className={`p-1 rounded-full ${
+            isDashboardPage ? "dark:bg-[#010103]" : "bg-white"
+          }`}
+        >
+          <button
+            className="p-2 rounded-full"
+            onClick={() => toast("Belum ada notifikasi baru")}
+          >
             <FaBell size={20} />
           </button>
         </div>
 
-        {/* Dropdown for User Profile */}
         <div className="relative">
           <div
-            className="flex rounded-xl bg-[#F3F5F8] cursor-pointer items-center p-4 w-full text-left "
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Toggle dropdown visibility
+            className={`flex rounded-3xl cursor-pointer items-center py-3 px-8 w-full text-left ${
+              isDashboardPage ? "dark:bg-[#010103]" : "bg-[#F3F5F8]"
+            }`}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <FaUserCircle size={24} />
-            <span className="ml-2">{user?.username}</span>
+            <div className="text-blue-500">
+              <FaUserCircle size={24} />
+            </div>
+            <span className="ml-2">{session?.user?.name || "Pengguna"}</span>
             {isDropdownOpen ? (
               <FaChevronUp className="w-3 h-3 ml-2" />
             ) : (
@@ -114,12 +80,15 @@ const DashboardNavbar = () => {
             )}
           </div>
 
-          {/* Dropdown Content */}
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white border rounded-2xl shadow-lg">
+            <div
+              className={`absolute right-0 mt-2 w-48 border rounded-2xl shadow-lg ${
+                isDashboardPage ? "dark:bg-[#010103]" : "bg-white"
+              }`}
+            >
               <button
                 onClick={handleLogout}
-                className="w-full roun px-4 py-2 text-left hover:bg-red-400 rounded-2xl"
+                className="w-full px-4 py-2 text-left hover:bg-red-400 rounded-2xl"
               >
                 Logout
               </button>
@@ -127,10 +96,20 @@ const DashboardNavbar = () => {
           )}
         </div>
 
-        {/* Sun Icon */}
-        <div className="bg-white p-1 rounded-full">
-          <button className="p-2 rounded-full hover:bg-gray-200">
-            <FaSun size={20} />
+        <div
+          className={`p-1 rounded-full ${
+            isDashboardPage ? "dark:bg-[#010103]" : "bg-white"
+          }`}
+        >
+          <button
+            className="p-2 rounded-full hover:bg-gray-200"
+            onClick={toggleTheme}
+          >
+            {theme === "light" ? (
+              <FaSun size={20} />
+            ) : (
+              <FaMoon size={20} className="text-blue-500" />
+            )}
           </button>
         </div>
       </div>

@@ -16,7 +16,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState("+62"); // Default to +62 (Indonesia)
+  const [selectedCountryCode, setSelectedCountryCode] = useState("+62");
   const router = useRouter();
 
   const handlePhoneChange = (value: string) => {
@@ -53,19 +53,19 @@ const Signup = () => {
 
       if (response.ok) {
         toast.success("Registration successful!");
-        router.push("/signIn"); // Navigate to the sign-in page if registration is successful
+        router.push("/signIn");
       } else {
-        toast.error(`Registration failed: ${data.error}`); // Show error message if registration fails
+        toast.error(`Registration failed: ${data.error}`);
       }
     } catch (error) {
       console.error("Error saat mendaftar:", error);
-      toast.error("An unexpected error occurred. Please try again."); // Show general error message for unexpected errors
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
 
   return (
     <div className="flex flex-col w-full items-center justify-center min-h-screen">
-      <div className="bg-white p-8 rounded-lg shadow-md md:w-full max-w-xl">
+      <div className="bg-white text-black p-8 rounded-lg shadow-md md:w-full max-w-xl">
         <div className="mb-8 text-center flex flex-col">
           <div className="font-bold text-xl">Welcome to Fowardin</div>
           <div className="text-sm">
@@ -78,7 +78,7 @@ const Signup = () => {
               type="text"
               id="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="w-full bg-slate-100 px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -89,7 +89,7 @@ const Signup = () => {
               type="text"
               id="username"
               placeholder="Enter your username"
-              className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="w-full px-4 py-3 bg-slate-100 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -104,7 +104,7 @@ const Signup = () => {
               onChange={(selectedOption) =>
                 setSelectedCountryCode(selectedOption?.value || "+62")
               }
-              className="flex-1 text-xs"
+              className="flex-1 bg-slate-100 text-xs"
               classNamePrefix="react-select"
               placeholder="Select country code"
             />
@@ -112,7 +112,7 @@ const Signup = () => {
               type="text"
               id="phone_number"
               placeholder="Enter your phone number"
-              className="flex-1 px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="flex-1 px-4 bg-slate-100 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={phoneNumber}
               onChange={(e) => handlePhoneChange(e.target.value)}
             />
@@ -123,7 +123,7 @@ const Signup = () => {
               type="password"
               id="password"
               placeholder="Enter your password"
-              className="w-full px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
+              className="w-full bg-slate-100 px-4 py-3 border text-xs rounded-sm focus:outline-none focus:ring focus:ring-neutral-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className="flex mt-28 gap-2 p-6 justify-center items-stretch">
       {/* Left Card */}
-      <div className="flex-1 bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+      <div className="flex-1 border-0 dark:border dark:border-gray-500 dark:bg-[#1F1F21] bg-white p-6 rounded-lg  flex flex-col justify-between">
         <div className="flex justify-between">
           <div className="flex flex-col gap-6">
             <div className="text-sm font-semibold">
@@ -59,7 +59,7 @@ const Header = () => {
                 <br />
               </div>
               <div className="flex">
-                <button className="font-semibold text-blue-400 items-center px-10 rounded-md py-2 border-2 border-blue-400 ">
+                <button className="font-semibold text-blue-500 items-center px-10 rounded-md py-2 border border-blue-400 ">
                   Upgrade Paket
                 </button>
               </div>
@@ -69,13 +69,13 @@ const Header = () => {
       </div>
 
       {/* Right Card */}
-      <div className="flex-2 bg-white p-4 rounded-lg shadow-lg flex flex-col justify-between">
+      <div className="flex-2 border-0 dark:border dark:bg-[#1F1F21] bg-white p-4 dark:border-gray-500 rounded-lg flex flex-col justify-between">
         <div className="text-start mb-2 font-semibold flex items-center">
           Pesan Terakhir
         </div>
         <div className="flex flex-col gap-2">
           {/* chat 1 */}
-          <div className="text-sm flex gap-4 bg-[#F3F5F8] py-2 px-2 rounded-md">
+          <div className="text-sm flex gap-4 border-0 dark:border-gray-500 dark:border bg-[#F3F5F8] dark:bg-[#1F1F21] py-2 px-2 rounded-md">
             <div className="items-center text-blue-500 flex justify-center">
               <FaUserCircle size={24} />
             </div>
@@ -90,7 +90,7 @@ const Header = () => {
             </div>
           </div>
           {/* chat 2 */}
-          <div className="text-sm flex gap-4 bg-[#F3F5F8] py-2 px-2 rounded-md">
+          <div className="text-sm flex gap-4 dark:border-gray-500 border-0 dark:border bg-[#F3F5F8] dark:bg-[#1F1F21] py-2 px-2 rounded-md">
             <div className="items-center text-blue-500 flex justify-center">
               <FaUserCircle size={24} />
             </div>
@@ -105,7 +105,7 @@ const Header = () => {
             </div>
           </div>
           {/* chat 3 */}
-          <div className="text-sm flex gap-4 bg-[#F3F5F8] py-2 px-2 rounded-md">
+          <div className="text-sm flex gap-4 dark:border-gray-500 border-0 dark:border bg-[#F3F5F8] dark:bg-[#1F1F21] py-2 px-2 rounded-md">
             <div className="items-center text-blue-500 flex justify-center">
               <Image
                 src={"/icon/message.png"}

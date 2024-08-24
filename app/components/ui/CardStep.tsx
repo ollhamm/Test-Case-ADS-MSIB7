@@ -51,7 +51,7 @@ const CardStep: React.FC<CardStepProps> = ({
                 </button>
               ))}
             </div>
-            <p className="text-sm md:text-md">{subtitle}</p>
+            <p className="text-sm text-black md:text-md">{subtitle}</p>
           </div>
         </div>
       </div>

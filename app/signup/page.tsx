@@ -1,6 +1,6 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import SignIn from "../components/layouts/auth/SignIn";
 import Signup from "../components/layouts/auth/Signup";
 
 const Page = () => {

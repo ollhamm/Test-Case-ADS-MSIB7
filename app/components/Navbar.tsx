@@ -10,8 +10,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const shouldHideNavbar =
-    pathname.startsWith("/dashboard/") && pathname.split("/").length > 2;
+  const shouldHideNavbar = pathname.startsWith("/dashboard");
 
   useEffect(() => {
     if (pathname === "/signIn" || pathname === "/signup") {
@@ -55,7 +54,7 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          <div className="hidden md:flex flex-1 items-center justify-center font-semibold gap-6">
+          <div className="hidden md:flex text-black flex-1 items-center justify-center font-semibold gap-6">
             <div className="flex flex-row gap-6">
               <div>Features</div>
               <div>Pricing</div>

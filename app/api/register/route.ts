@@ -9,7 +9,6 @@ export async function POST(request: Request) {
   try {
     const { email, username, phone_number, password } = await request.json();
 
-    // Periksa apakah email sudah ada
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -21,10 +20,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Buat pengguna baru dengan password yang sudah di-hash
     const user = await prisma.user.create({
       data: {
         email,
