@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Other configurations
   async headers() {
     return [
       {
@@ -8,7 +7,8 @@ const nextConfig = {
         headers: [
           {
             key: "Set-Cookie",
-            value: "your-cookie-settings-here; Secure; SameSite=Strict",
+            value:
+              "next-auth.session-token=; Path=/; Secure; HttpOnly; SameSite=Strict",
           },
         ],
       },
