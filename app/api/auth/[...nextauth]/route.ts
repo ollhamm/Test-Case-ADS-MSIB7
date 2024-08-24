@@ -17,8 +17,12 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Missing email or password");
+        }
+
         const user = await prisma.user.findUnique({
-          where: { email: credentials?.email },
+          where: { email: credentials.email },
         });
 
         if (!user) {
@@ -26,7 +30,7 @@ const handler = NextAuth({
         }
 
         const isPasswordValid = await bcrypt.compare(
-          credentials!.password,
+          credentials.password,
           user.password
         );
 
@@ -37,7 +41,7 @@ const handler = NextAuth({
         return {
           id: user.id,
           email: user.email,
-          name: user.username,
+          name: user.username || "Pengguna",
         };
       },
     }),
@@ -46,15 +50,21 @@ const handler = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async session({ session, user }) {
-      if (user) {
+    async session({ session, token }) {
+      if (token) {
         session.user = {
           ...session.user,
-          name: user.name,
-          email: user.email,
+          name: token.name || "Pengguna",
         };
       }
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+      }
+      return token;
     },
   },
 });

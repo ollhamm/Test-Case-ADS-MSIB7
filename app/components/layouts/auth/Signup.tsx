@@ -1,8 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Select from "react-select";
 import { toast } from "react-hot-toast";
+import Spinner from "../../Spinner"; // Pastikan path ini sesuai dengan lokasi komponen Spinner kamu
 
 const countryOptions = [
   { value: "+1", label: "+1 (USA)" },
@@ -16,6 +17,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("+62");
+  const [loading, setLoading] = useState(false); // Tambahkan state loading
   const router = useRouter();
 
   const handlePhoneChange = (value: string) => {
@@ -39,6 +41,8 @@ const Signup = () => {
       password,
     };
 
+    setLoading(true); // Set loading true sebelum permintaan API
+
     try {
       const response = await fetch("/api/register", {
         method: "POST",
@@ -59,6 +63,8 @@ const Signup = () => {
     } catch (error) {
       console.error("Error saat mendaftar:", error);
       toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Set loading false setelah permintaan selesai
     }
   };
 
@@ -131,8 +137,9 @@ const Signup = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-12 rounded-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            disabled={loading} // Nonaktifkan tombol jika loading
           >
-            Sign Up
+            {loading ? <Spinner /> : "Sign Up"}
           </button>
         </form>
         <div className="mt-6 items-center flex-row flex justify-center">

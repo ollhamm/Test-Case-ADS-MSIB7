@@ -23,13 +23,9 @@ const DashboardNavbar = () => {
   const isDashboardPage = pathname === "/dashboard";
 
   const handleLogout = async () => {
-    try {
-      await signOut({ redirect: false });
-      toast.success("Anda telah logout.");
-      window.location.href = "/signIn";
-    } catch (error) {
-      toast.error("Terjadi kesalahan saat logout.");
-    }
+    await signOut({ redirect: false });
+    toast.success("Cookie telah dihapus. Anda telah logout.");
+    window.location.href = "/signIn";
   };
 
   const toggleTheme = () => {
@@ -92,9 +88,7 @@ const DashboardNavbar = () => {
               }`}
             >
               <button
-                onClick={() =>
-                  signOut({ callbackUrl: "/signIn", redirect: true })
-                }
+                onClick={handleLogout}
                 className="w-full px-4 py-2 text-left hover:bg-red-400 rounded-2xl"
               >
                 Logout

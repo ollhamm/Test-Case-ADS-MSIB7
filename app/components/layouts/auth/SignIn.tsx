@@ -3,20 +3,25 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import Spinner from "../../Spinner"; // Import Spinner component
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // State for loading
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // Start loading
 
     const result = await signIn("credentials", {
       redirect: false,
       email,
       password,
     });
+
+    setLoading(false); // Stop loading
 
     if (result?.error) {
       toast.error("Login failed. Please check your credentials and try again.");
@@ -65,7 +70,7 @@ const SignIn = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-12 rounded-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            Sign In
+            {loading ? <Spinner /> : "Sign In"}
           </button>
         </form>
         <div className="mt-6 items-center flex-row flex justify-center">
