@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/app/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
   return (
@@ -11,7 +10,10 @@ const CheckIcon = ({ className }: { className?: string }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={cn("w-6 h-6", className)}
+      className={cn(
+        "w-6 h-6 transition-transform duration-300 hover:scale-110",
+        className
+      )}
     >
       <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </svg>
@@ -24,7 +26,10 @@ const CheckFilled = ({ className }: { className?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={cn("w-6 h-6", className)}
+      className={cn(
+        "w-6 h-6 transition-transform duration-300 hover:scale-110",
+        className
+      )}
     >
       <path
         fillRule="evenodd"
@@ -47,7 +52,7 @@ const LoaderCore = ({
   value?: number;
 }) => {
   return (
-    <div className="flex justify-center bg-white bg-opacity-25 p-6 rounded-xl items-start mx-auto flex-col">
+    <div className="flex justify-center bg-white bg-opacity-25 dark:bg-white dark:bg-opacity-25 p-6 rounded-xl items-start mx-auto flex-col">
       {loadingStates.map((loadingState, index) => {
         const isActive = index === value;
         const isCompleted = index < value;
@@ -62,8 +67,8 @@ const LoaderCore = ({
           >
             <span
               className={cn(
-                "text-black text-sm dark:text-gray-300",
-                isActive && "text-black dark:text-black"
+                "text-black dark:text-gray-300 text-sm",
+                isActive && "text-gray-300 dark:text-gray-700"
               )}
             >
               {loadingState.text}

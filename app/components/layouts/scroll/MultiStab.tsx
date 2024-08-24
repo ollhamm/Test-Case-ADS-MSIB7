@@ -39,7 +39,7 @@ export function MultiStepLoaderDemo() {
   }, []);
 
   return (
-    <div className="hidden md:flex fixed top-0 bottom-0 left-0 z-[100] dark:border-gray-700">
+    <div className="hidden md:flex text-gray-400 fixed top-0 bottom-0 left-0 z-[100] dark:border-gray-700">
       <Loader loadingStates={loadingStates} currentStep={activeSection} />
     </div>
   );
