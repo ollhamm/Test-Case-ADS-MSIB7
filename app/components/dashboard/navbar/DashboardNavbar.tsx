@@ -50,7 +50,7 @@ const DashboardNavbar = () => {
       <div className="text-md font-bold">
         <div className="flex flex-row items-center gap-3">
           <div>Selamat datang,</div>
-          <div>{session?.user?.name || "Pengguna"}</div>
+          <div>{session?.user?.name || "not logged in"}</div>
         </div>
       </div>
       <div className="flex items-center gap-4">
@@ -77,7 +77,9 @@ const DashboardNavbar = () => {
             <div className="text-blue-500">
               <FaUserCircle size={24} />
             </div>
-            <span className="ml-2">{session?.user?.name || "Pengguna"}</span>
+            <span className="ml-2">
+              {session?.user?.name || "not logged in"}
+            </span>
             {isDropdownOpen ? (
               <FaChevronUp className="w-3 h-3 ml-2" />
             ) : (
