@@ -5,7 +5,6 @@ import Sidebar from "@/app/components/dashboard/sidebar/Sidebar";
 import DashboardNavbar from "@/app/components/dashboard/navbar/DashboardNavbar";
 import Header from "@/app/components/dashboard/header/Header";
 import Analitik from "@/app/components/dashboard/analitik/Analitik";
-import { useRouter } from "next/navigation";
 
 const Page = () => {
   return (
