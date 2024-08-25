@@ -63,7 +63,7 @@ const Home = () => {
               currentSection === 1 ? "opacity-100" : "opacity-30 blur-sm"
             }`}
           >
-            <div className="flex flex-col md:flex-row-reverse">
+            <div className="flex flex-col md:flex-col lg:flex-row-reverse">
               <Card
                 title="Reach Further with Ease"
                 subtitle="Fowardin memberikan Anda akses cepat untuk memperluas jangkauan komunikasi Anda. Dengan fitur Broadcast kami, Anda dapat mengirim pesan kepada banyak kontak dan grup sekaligus. Menjangkau audiens Anda tidak pernah semudah ini."
@@ -131,7 +131,7 @@ const Home = () => {
             }`}
           >
             <div className="flex-col flex items-center justify-center">
-              <div className="flex md:flex-row flex-col mb-12 md:space-x-4 overflow-x-auto">
+              <div className="flex lg:flex-row flex-col mb-12 lg:space-x-4 overflow-x-auto">
                 <PricingSection />
               </div>
             </div>
@@ -143,7 +143,7 @@ const Home = () => {
             }`}
           >
             <div className="flex-col flex">
-              <div className="flex md:flex-row flex-col mb-12 md:space-x-4 overflow-x-auto">
+              <div className="flex lg:flex-row flex-col mb-12 lg:space-x-4 overflow-x-auto">
                 <Faq />
               </div>
             </div>
@@ -155,7 +155,7 @@ const Home = () => {
             }`}
           >
             <div className="flex-col flex">
-              <div className="flex md:flex-row flex-col md:space-x-4 overflow-x-auto">
+              <div className="flex lg:flex-row flex-col lg:space-x-4 overflow-x-auto">
                 <Footer />
               </div>
             </div>

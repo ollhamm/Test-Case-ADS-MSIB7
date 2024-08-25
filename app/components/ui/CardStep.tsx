@@ -30,7 +30,7 @@ const CardStep: React.FC<CardStepProps> = ({
             alt={altText}
             width={300}
             height={300}
-            className="rounded-md"
+            className="w-auto h-auto rounded-md"
           />
         </div>
 
