@@ -41,7 +41,7 @@ const handler = NextAuth({
         return {
           id: user.id,
           email: user.email,
-          name: user.username || "Pengguna",
+          name: user.username || "not logged in",
         };
       },
     }),
@@ -54,7 +54,7 @@ const handler = NextAuth({
       if (token) {
         session.user = {
           ...session.user,
-          name: token.name || "Pengguna",
+          name: token.name || "not logged in",
         };
       }
       return session;

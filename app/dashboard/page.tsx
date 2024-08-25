@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
-import { signIn, SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import Sidebar from "@/app/components/dashboard/sidebar/Sidebar";
 import DashboardNavbar from "@/app/components/dashboard/navbar/DashboardNavbar";
 import Header from "@/app/components/dashboard/header/Header";
